@@ -14,7 +14,7 @@ class ListAnalyzeTextView(ListCreateAPIView):
     model = BasicText
     serializer_class = BasicTextSerializer
 
-    def get_queryset(self, request, *args, **kwargs):
+    def get(self, request, *args, **kwargs):
         score = run_model.analyzeText(request.data['text'])
         serializer = BasicTextSerializer(data={'text': request.data['text'], 'score': score})
 
